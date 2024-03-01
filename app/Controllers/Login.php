@@ -8,4 +8,13 @@ class Login extends BaseController
     {
         return view('login');
     }
+    public function auth()
+    {
+        $user = [
+            'email' => $this->request->getPost('email'),
+            'password' => $this->request->getPost('password')
+        ];
+        
+        return $user['email'];
+    }
 }

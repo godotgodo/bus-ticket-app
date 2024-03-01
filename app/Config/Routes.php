@@ -12,4 +12,6 @@ use app\Controllers\Pages;
 $routes->get('pages', [Pages::class, 'index']);
 // $routes->get('(:segment)', [Pages::class, 'view']);
 
-$routes->get('login', 'login');
+$routes->get('login', 'Login::index');
+$routes->get('register', 'Register::index');
+$routes->post('register', 'Register::save');

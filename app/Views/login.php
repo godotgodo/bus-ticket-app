@@ -10,19 +10,20 @@
             <div class="animate__animated animate__backInRight col-md-8 col-lg-6 col-xl-4 offset-xl-1">
                 <form>
                     <div class="form-outline mb-4">
-                        <input type="email" id="login-email" class="form-control form-control-lg"
+                        <input type="email" id="login-email" name="login-email" class="form-control form-control-lg"
                             placeholder="Enter a valid email address" />
-                        <label class="form-label" for="form3Example3">Email address</label>
+                        <label class="form-label" for="login-email">Email address</label>
                     </div>
                     <div class="form-outline mb-3">
-                        <input type="password" id="login-password" class="form-control form-control-lg"
-                            placeholder="Enter password" />
-                        <label class="form-label" for="form3Example4">Password</label>
+                        <input type="password" id="login-password" name="login-password"
+                            class="form-control form-control-lg" placeholder="Enter password" />
+                        <label class="form-label" for="login-password">Password</label>
                     </div>
                     <div class="d-flex justify-content-between align-items-center">
                         <div class="form-check mb-0">
-                            <input class="form-check-input me-2" type="checkbox" value="" id="form2Example3" />
-                            <label class="form-check-label" for="form2Example3">
+                            <input class="form-check-input me-2" type="checkbox" value="" id="remember-me"
+                                name="remember-me" />
+                            <label class="form-check-label" for="remember-me">
                                 Remember me
                             </label>
                         </div>
@@ -36,6 +37,7 @@
                         </p>
                     </div>
                 </form>
+
             </div>
         </div>
     </div>

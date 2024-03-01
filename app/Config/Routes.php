@@ -16,3 +16,4 @@ $routes->get('login', 'Login::index');
 $routes->post('login', 'Login::auth');
 $routes->get('register', 'Register::index');
 $routes->post('register', 'Register::save');
+$routes->get('card', 'Card::index');

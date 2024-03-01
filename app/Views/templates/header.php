@@ -49,13 +49,13 @@
             <div>
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link active" href="#">Card</a>
+                        <a class="nav-link active" href="card">Card</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" href="#">Log in</a>
+                        <a class="nav-link active" href="login">Log in</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" href="#">Sign Up</a>
+                        <a class="nav-link active" href="register">Sign Up</a>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
@@ -63,13 +63,13 @@
                             Profile
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">Tickets</a></li>
-                            <li><a class="dropdown-item" href="#">Rezervations</a></li>
-                            <li><a class="dropdown-item" href="#">Settings</a></li>
+                            <li><a class="dropdown-item" href="user/tickets">Tickets</a></li>
+                            <li><a class="dropdown-item" href="user/rezervations">Rezervations</a></li>
+                            <li><a class="dropdown-item" href="user/settings">Settings</a></li>
                             <li>
                                 <hr class="dropdown-divider">
                             </li>
-                            <li><a class="dropdown-item" href="#">Log out</a></li>
+                            <li><a class="dropdown-item" href="logout">Log out</a></li>
                         </ul>
                     </li>
                 </ul>

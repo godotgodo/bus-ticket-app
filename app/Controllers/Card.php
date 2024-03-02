@@ -32,7 +32,7 @@ class Card extends BaseController
         $data['totalPrice'] = $data['subTotal'] - $data['discountAmount'];
 
         // session ile totalPrice kaydedilmeli ve aşağıdaki payment metodunda kullanılmalı
-        return view('card', $data);
+        return view('user/card', $data);
     }
 
     public function payment() :string {
@@ -56,11 +56,8 @@ class Card extends BaseController
     }
     function applyDiscount($data){
         $subTotal = $data['subTotal'];
-        $discountPercentage = $data['discountPercentage'];
-        
-        // İndirim yüzdesini hesapla ve indirim yap
+        $discountPercentage = $data['discountPercentage'];        
         $discountAmount = $subTotal * ($discountPercentage / 100);
-        
         return $discountAmount;
     }
 }

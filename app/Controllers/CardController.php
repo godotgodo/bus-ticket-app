@@ -2,7 +2,7 @@
 
 namespace App\Controllers;
 
-class Card extends BaseController
+class CardController extends BaseController
 {
     public function index(): string
     {

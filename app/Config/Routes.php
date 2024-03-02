@@ -5,21 +5,21 @@ use CodeIgniter\Router\RouteCollection;
 /**
  * @var RouteCollection $routes
  */
-$routes->get('/', 'Home::index');
+$routes->get('/', 'HomeController::index');
 
-use app\Controllers\Pages;
+use app\Controllers\PagesController;
 
-$routes->get('pages', [Pages::class, 'index']);
+$routes->get('pages', [PagesController::class, 'index']);
 // $routes->get('(:segment)', [Pages::class, 'view']);
 
-$routes->get('login', 'Login::index');
-$routes->post('login', 'Login::auth');
-$routes->get('register', 'Register::index');
-$routes->post('register', 'Register::save');
+$routes->get('login', 'LoginController::index');
+$routes->post('login', 'LoginController::auth');
+$routes->get('register', 'RegisterController::index');
+$routes->post('register', 'RegisterController::save');
 $routes->group('user', static function ($routes) {
-    $routes->get('card', 'Card::index');
-    $routes->post('payment', 'Card::payment');
-    $routes->get('tickets', 'User::getTickets');
-    $routes->get('reservations', 'User::getReservations');
-    $routes->post('deleteReservation/(:num)', 'User::deleteReservation/$1');
+    $routes->get('card', 'CardController::index');
+    $routes->post('payment', 'CardController::payment');
+    $routes->get('tickets', 'UserController::getTickets');
+    $routes->get('reservations', 'UserController::getReservations');
+    $routes->post('deleteReservation/(:num)', 'UserController::deleteReservation/$1');
 });

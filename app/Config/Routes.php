@@ -20,5 +20,6 @@ $routes->group('user', static function ($routes) {
     $routes->get('card', 'Card::index');
     $routes->post('payment', 'Card::payment');
     $routes->get('tickets', 'User::getTickets');
-    $routes->get('tickets', 'User::getReservations');
+    $routes->get('reservations', 'User::getReservations');
+    $routes->post('deleteReservation/(:num)', 'User::deleteReservation/$1');
 });

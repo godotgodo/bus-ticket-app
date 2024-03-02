@@ -43,7 +43,8 @@
                                             </div>
                                             <div class="d-flex flex-row align-items-center">
                                                 <div style="width: 50px;">
-                                                    <h5 class="fw-normal mb-0"><?= getenv('currency') . $ticket['price'] ?></h5>
+                                                    <h5 class="fw-normal mb-0">
+                                                        <?= getenv('currency') . $ticket['price'] ?></h5>
                                                 </div>
                                                 <a href="#!" style="color: #cecece;"><i
                                                         class="fas fa-trash-alt"></i></a>
@@ -61,35 +62,26 @@
                                         <div class="d-flex justify-content-between align-items-center mb-4">
                                             <h5 class="mb-0">Card details</h5>
                                         </div>
-
-                                        <p class="small mb-2">Card type</p>
-                                        <a href="#!" type="submit" class="text-white"><i
-                                                class="fab fa-cc-mastercard fa-2x me-2"></i></a>
-                                        <a href="#!" type="submit" class="text-white"><i
-                                                class="fab fa-cc-visa fa-2x me-2"></i></a>
-                                        <a href="#!" type="submit" class="text-white"><i
-                                                class="fab fa-cc-amex fa-2x me-2"></i></a>
-                                        <a href="#!" type="submit" class="text-white"><i
-                                                class="fab fa-cc-paypal fa-2x"></i></a>
-
-                                        <form class="mt-4">
+                                        <form class="mt-4" action="payment" method="post">
                                             <div class="form-outline form-white mb-4">
-                                                <input type="text" id="typeName" class="form-control form-control-lg"
-                                                    siez="17" placeholder="Cardholder's Name" />
+                                                <input type="text" id="name" name="name"
+                                                    class="form-control form-control-lg" siez="17"
+                                                    placeholder="Cardholder's Name" />
                                                 <label class="form-label" for="typeName">Cardholder's Name</label>
                                             </div>
 
                                             <div class="form-outline form-white mb-4">
-                                                <input type="text" id="typeText" class="form-control form-control-lg"
-                                                    siez="17" placeholder="1234 5678 9012 3457" minlength="19"
-                                                    maxlength="19" />
+                                                <input type="text" id="number" name="number"
+                                                    class="form-control form-control-lg" size="17"
+                                                    placeholder="1234 5678 9012 3457" minlength="19" maxlength="19" />
+
                                                 <label class="form-label" for="typeText">Card Number</label>
                                             </div>
 
                                             <div class="row mb-4">
                                                 <div class="col-md-6">
                                                     <div class="form-outline form-white">
-                                                        <input type="text" id="typeExp"
+                                                        <input type="text" id="expiration" name="expiration"
                                                             class="form-control form-control-lg" placeholder="MM/YYYY"
                                                             size="7" id="exp" minlength="7" maxlength="7" />
                                                         <label class="form-label" for="typeExp">Expiration</label>
@@ -97,41 +89,36 @@
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div class="form-outline form-white">
-                                                        <input type="password" id="typeText"
-                                                            class="form-control form-control-lg"
+                                                        <input type="password" id="cvv"
+                                                            class="form-control form-control-lg" name="cvv"
                                                             placeholder="&#9679;&#9679;&#9679;" size="1" minlength="3"
                                                             maxlength="3" />
                                                         <label class="form-label" for="typeText">Cvv</label>
                                                     </div>
                                                 </div>
                                             </div>
+                                            <hr class="my-4">
 
-                                        </form>
-
-                                        <hr class="my-4">
-
-                                        <div class="d-flex justify-content-between">
-                                            <p class="mb-2">Subtotal</p>
-                                            <p class="mb-2">$4798.00</p>
-                                        </div>
-
-                                        <div class="d-flex justify-content-between">
-                                            <p class="mb-2">Shipping</p>
-                                            <p class="mb-2">$20.00</p>
-                                        </div>
-
-                                        <div class="d-flex justify-content-between mb-4">
-                                            <p class="mb-2">Total(Incl. taxes)</p>
-                                            <p class="mb-2">$4818.00</p>
-                                        </div>
-
-                                        <button type="button" class="btn btn-info btn-block btn-lg">
                                             <div class="d-flex justify-content-between">
-                                                <span>$4818.00</span>
-                                                <span>Checkout <i class="fas fa-long-arrow-alt-right ms-2"></i></span>
+                                                <p class="mb-2">Subtotal</p>
+                                                <p class="fw-normal mb-0"><?= getenv('currency') . esc($subTotal) ?></p>
                                             </div>
-                                        </button>
+                                            <div class="d-flex justify-content-between">
+                                                <p class="mb-2">Discount (%<?= esc($discountPercentage) ?>)</p>
+                                                <p class="fw-normal mb-0">
+                                                    <?= getenv('currency') . esc($discountAmount) ?>
+                                                </p>
+                                            </div>
+                                            <div class="d-flex justify-content-between mb-4">
+                                                <p class="mb-2">Total Price</p>
+                                                <p class="fw-normal mb-0"><?= getenv('currency') . esc($totalPrice) ?>
+                                                </p>
+                                            </div>
 
+                                            <input type="submit" class="btn btn-info btn-block btn-lg"
+                                                value="<?= getenv('currency') . esc($totalPrice) ?> Checkout">
+                                            </input>
+                                        </form>
                                     </div>
                                 </div>
 

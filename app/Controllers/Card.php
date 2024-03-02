@@ -24,8 +24,40 @@ class Card extends BaseController
                     'price'=> 500,
                     'roundTrip'=>true
                 ]
-            ]
+            ],
+            'discountPercentage'=>15
         ];
-        return view('card', $data);
+        $data['subTotal'] = $this->calculateSubTotal($data);
+        $data['discountAmount'] = $this->applyDiscount($data);    
+        $data['totalPrice'] = $data['subTotal'] - $data['discountAmount'];
+
+        // session ile totalPrice kaydedilmeli ve aşağıdaki payment metodunda kullanılmalı
+        return view('user/card', $data);
+    }
+
+    public function payment() :string {
+        $card = [
+            'name' => $this->request->getPost('name'),
+            'number' => $this->request->getPost('number'),
+            'expiration' => $this->request->getPost('expiration'),
+            'cvv' => $this->request->getPost('cvv'),
+        ];
+        // $totalPrice=$_SESSION['totalPrice'];
+        $totalPrice=300;
+        return "Kart numarası " . $card['number'] . " olan karttan $totalPrice kadar tutar çekilecek.";
+    }
+
+    function calculateSubTotal($data){
+        $subTotal = 0;
+        foreach ($data['tickets'] as $ticket) {
+            $subTotal += $ticket['price'];
+        }    
+        return $subTotal;
+    }
+    function applyDiscount($data){
+        $subTotal = $data['subTotal'];
+        $discountPercentage = $data['discountPercentage'];        
+        $discountAmount = $subTotal * ($discountPercentage / 100);
+        return $discountAmount;
     }
 }

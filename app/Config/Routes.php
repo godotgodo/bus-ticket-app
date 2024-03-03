@@ -19,3 +19,4 @@ $routes->group('user', static function ($routes) {
     $routes->post('deleteReservation/(:num)', 'UserController::deleteReservation/$1');
 });
 $routes->get('searchTickets','TicketController::searchTickets');
+$routes->get('routes','RouteController::getRoutes');

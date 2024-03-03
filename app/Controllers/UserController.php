@@ -78,4 +78,17 @@ class UserController extends BaseController
     public function deleteReservation($reservation_id){
         return $reservation_id;
     }
+    public function addToReservation(){
+        $data=[
+            'going'=>[
+                'route_id'=>$this->request->getPost('route-id'),
+                'seats'=>[1,2]
+            ],
+            'returning'=>[
+                'route_id'=>$this->request->getPost('route-id'),
+                'seats'=>[1,2]
+            ]
+        ];
+        return $data['going']['route_id'];
+    }
 }

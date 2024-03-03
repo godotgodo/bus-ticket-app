@@ -47,6 +47,20 @@ class CardController extends BaseController
         return "Kart numarası " . $card['number'] . " olan karttan $totalPrice kadar tutar çekilecek.";
     }
 
+    public function addToCard(){
+        $data=[
+            'going'=>[
+                'route_id'=>$this->request->getPost('route-id'),
+                'seats'=>[1,2]
+            ],
+            'returning'=>[
+                'route_id'=>$this->request->getPost('route-id'),
+                'seats'=>[1,2]
+            ]
+        ];
+        return $data['going']['route_id'];
+    }
+
     function calculateSubTotal($data){
         $subTotal = 0;
         foreach ($data['tickets'] as $ticket) {
@@ -54,6 +68,7 @@ class CardController extends BaseController
         }    
         return $subTotal;
     }
+
     function applyDiscount($data){
         $subTotal = $data['subTotal'];
         $discountPercentage = $data['discountPercentage'];        

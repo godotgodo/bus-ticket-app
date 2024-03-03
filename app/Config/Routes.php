@@ -19,4 +19,8 @@ $routes->group('user', static function ($routes) {
     $routes->post('deleteReservation/(:num)', 'UserController::deleteReservation/$1');
 });
 $routes->get('searchTickets','TicketController::searchTickets');
+
+//Should be working with dynamic data, now static html.
 $routes->get('routes','RouteController::getRoutes');
+$routes->post('addToCard','CardController::addToCard');
+$routes->post('addToReservation','UserController::addToReservation');

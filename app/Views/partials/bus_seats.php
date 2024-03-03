@@ -1,9 +1,15 @@
 <div style="margin: auto; width: 40%;">
     <ul style="display: flex; gap: .5rem; flex-wrap: wrap; list-style: none; justify-content: space-between;">
-        <li class="seat">
+        <!-- <li class="seat">
             <input type="checkbox" value="None" id="seat1" name="check" />
             <label for="1">1</label>
-        </li>
+        </li> -->
+        <!-- TEMPORARLY -->
+        <span>Input seats</span>
+        <?php foreach ($seats as $seatNumber => $status): ?>
+        <?= "Seat $seatNumber: $status <br>"; ?>
+        <?php endforeach; ?>
+        <input type="text" id="<?= $type.'-list' ?>" name="<?= $type.'-list' ?>" style="width: 5rem;" />
     </ul>
 </div>
 <style>

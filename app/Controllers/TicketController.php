@@ -4,8 +4,9 @@ namespace App\Controllers;
 
 class TicketController extends BaseController
 {
-    public function searchTickets($startingDestination, $endingDestination) {
-        return $startingDestination."'den ".$endingDestination."'e bilet araması yapıldı";
+    public function searchTickets() {
+        $queries=$this->request->getVar();
+        return $queries['startingDestination']."'den ".$queries['endingDestination']."'e bilet araması yapıldı";
     }
 }
 // $data=[

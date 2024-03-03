@@ -43,7 +43,7 @@
             <div>
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link active" href="user/card">Card</a>
+                        <a class="nav-link active" href="/user/card">Card</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link active" href="/login">Log in</a>

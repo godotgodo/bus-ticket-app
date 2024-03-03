@@ -2,7 +2,7 @@
 
 namespace App\Controllers;
 
-class Card extends BaseController
+class CardController extends BaseController
 {
     public function index(): string
     {
@@ -47,6 +47,20 @@ class Card extends BaseController
         return "Kart numarası " . $card['number'] . " olan karttan $totalPrice kadar tutar çekilecek.";
     }
 
+    public function addToCard(){
+        $data=[
+            'going'=>[
+                'route_id'=>$this->request->getPost('route-id'),
+                'seats'=>[1,2]
+            ],
+            'returning'=>[
+                'route_id'=>$this->request->getPost('route-id'),
+                'seats'=>[1,2]
+            ]
+        ];
+        return $data['going']['route_id'];
+    }
+
     function calculateSubTotal($data){
         $subTotal = 0;
         foreach ($data['tickets'] as $ticket) {
@@ -54,6 +68,7 @@ class Card extends BaseController
         }    
         return $subTotal;
     }
+
     function applyDiscount($data){
         $subTotal = $data['subTotal'];
         $discountPercentage = $data['discountPercentage'];        

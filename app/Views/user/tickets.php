@@ -1,6 +1,6 @@
 <?= $this->extend('layouts/main') ?>
 <?= $this->section('content') ?>
-<ul class="nav nav-tabs" id="myTab" role="tablist">
+<ul class="mt-3 nav nav-tabs" id="myTab" role="tablist">
     <li class="nav-item" role="presentation">
         <button class="nav-link active" id="current-tab" data-bs-toggle="tab" data-bs-target="#current" type="button"
             role="tab" aria-controls="current" aria-selected="true">Current Tickets</button>
@@ -10,7 +10,7 @@
             aria-controls="old" aria-selected="false">Old Tickets</button>
     </li>
 </ul>
-<div class="tab-content" id="myTabContent">
+<div class="mt-2 tab-content" id="myTabContent">
     <div class="tab-pane fade show active" id="current" role="tabpanel" aria-labelledby="current-tab">
         <h3>Current Tickets</h3>
         <?php foreach (esc($currentTickets) as $ticket): ?>

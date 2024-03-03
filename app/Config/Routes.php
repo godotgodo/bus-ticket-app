@@ -5,13 +5,8 @@ use CodeIgniter\Router\RouteCollection;
 /**
  * @var RouteCollection $routes
  */
+
 $routes->get('/', 'HomeController::index');
-
-use app\Controllers\PagesController;
-
-$routes->get('pages', [PagesController::class, 'index']);
-// $routes->get('(:segment)', [Pages::class, 'view']);
-
 $routes->get('login', 'LoginController::index');
 $routes->post('login', 'LoginController::auth');
 $routes->get('register', 'RegisterController::index');
@@ -23,3 +18,4 @@ $routes->group('user', static function ($routes) {
     $routes->get('reservations', 'UserController::getReservations');
     $routes->post('deleteReservation/(:num)', 'UserController::deleteReservation/$1');
 });
+$routes->get('searchTickets/(:segment)/(:segment)','TicketController::searchTickets/$1/$2');

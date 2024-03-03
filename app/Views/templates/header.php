@@ -13,7 +13,7 @@
 <body>
     <div class="bg-body-tertiary">
         <nav class="navbar navbar-expand-lg container">
-            <a class="navbar-brand" href="#"><?= getenv('BRAND_NAME') ?> </a>
+            <a class="navbar-brand" href="/"><?= getenv('BRAND_NAME') ?> </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
                 aria-label="Toggle navigation">
@@ -22,12 +22,9 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Link</a>
+                        <a class="nav-link active" aria-current="page" href="/routes">Routes</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" href="#">Link</a>
-                    </li>
-                    <li class="nav-item dropdown">
+                    <!-- <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
                             aria-expanded="false">
                             Dropdown
@@ -40,7 +37,7 @@
                             </li>
                             <li><a class="dropdown-item" href="#">Something else here</a></li>
                         </ul>
-                    </li>
+                    </li> -->
                 </ul>
             </div>
             <div>

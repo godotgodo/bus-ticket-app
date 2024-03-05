@@ -11,6 +11,7 @@ class UserController extends BaseController
         $data=[
             'currentTickets'=>[
                 [
+                    'ticket_id'=>1,
                     'startingDestination'=>'İstanbul',
                     'endingDestination'=>'Ankara',
                     'datetime'=>'2024-01-01',
@@ -19,6 +20,7 @@ class UserController extends BaseController
                     'roundTrip'=>false
                 ],
                 [
+                    'ticket_id'=>2,
                     'startingDestination'=>'Kocaeli',
                     'endingDestination'=>'Ankara',
                     'datetime'=>'2024-01-02',
@@ -29,6 +31,7 @@ class UserController extends BaseController
             ],
             'oldTickets'=>[
                 [
+                    'ticket_id'=>3,
                     'startingDestination'=>'İstanbul',
                     'endingDestination'=>'Ankara',
                     'datetime'=>'2024-01-01',
@@ -37,6 +40,7 @@ class UserController extends BaseController
                     'roundTrip'=>false
                 ],
                 [
+                    'ticket_id'=>4,
                     'startingDestination'=>'Kocaeli',
                     'endingDestination'=>'Ankara',
                     'datetime'=>'2024-01-02',
@@ -90,5 +94,9 @@ class UserController extends BaseController
             ]
         ];
         return $data['going']['route_id'];
+    }
+
+    public function releaseTheTicket($ticket_id){
+        return $ticket_id.'idli ticket açığa alınmak isteniyor';
     }
 }

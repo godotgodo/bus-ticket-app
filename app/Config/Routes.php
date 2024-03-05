@@ -16,6 +16,7 @@ $routes->group('user', static function ($routes) {
     $routes->get('reservations', 'UserController::getReservations');
     $routes->post('deleteReservation/(:num)', 'UserController::deleteReservation/$1');
     $routes->post('addToReservation','UserController::addToReservation');
+    $routes->post('releaseTheTicket/(:num)','UserController::releaseTheTicket/$1');
 });
 $routes->group('process',static function ($routes){
     $routes->get('selectGoingSeats','ProcessController::getSelectGoingSeats');

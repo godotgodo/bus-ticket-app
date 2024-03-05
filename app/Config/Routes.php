@@ -27,5 +27,4 @@ $routes->group('process',static function ($routes){
 });
 $routes->post('selectRoute','RouteController::selectRoute');
 $routes->get('searchTickets','TicketController::searchTickets');
-//Should be working with dynamic data, now static html.
 $routes->get('routes','RouteController::getRoutes');

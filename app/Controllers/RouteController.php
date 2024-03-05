@@ -5,44 +5,41 @@ namespace App\Controllers;
 class RouteController extends BaseController
 {
     public function getRoutes(){
-        return view('routes');
+        $data=[
+                'routes'=>[[
+                    'route-id'=>1,
+                    'startingDestination'=>'Ankara',
+                    'endingDestination'=>'İstanbul',
+                    'datetime'=>'2023-01-01',
+                    'freeSeats'=>25,
+                ],
+                [
+                    'route-id'=>2, 
+                    'startingDestination'=>'Kocaeli',
+                    'endingDestination'=>'Ankara',
+                    'datetime'=>'2023-01-02',
+                    'freeSeats'=>10,
+                ],
+                [
+                    'route-id'=>3,
+                    'startingDestination'=>'Ankara',
+                    'endingDestination'=>'Kocaeli',
+                    'datetime'=>'2023-01-02',
+                    'freeSeats'=>10,
+                ]
+                ]
+        ];
+        return view('routes',$data);
     }
-}
-// $data=[
-        //     'currentTickets'=>[
-        //         [
-        //             'startingDestination'=>'İstanbul',
-        //             'endingDestination'=>'Ankara',
-        //             'datetime'=>'2024-01-01',
-        //             'busPlate'=>'34 XYZ 34',
-        //             'price'=> 300,
-        //             'roundTrip'=>false
-        //         ],
-        //         [
-        //             'startingDestination'=>'Kocaeli',
-        //             'endingDestination'=>'Ankara',
-        //             'datetime'=>'2024-01-02',
-        //             'busPlate'=>'34 XYZ 41',
-        //             'price'=> 500,
-        //             'roundTrip'=>true
-        //         ]
-        //     ],
-        //     'oldTickets'=>[
-        //         [
-        //             'startingDestination'=>'İstanbul',
-        //             'endingDestination'=>'Ankara',
-        //             'datetime'=>'2024-01-01',
-        //             'busPlate'=>'34 XYZ 34',
-        //             'price'=> 300,
-        //             'roundTrip'=>false
-        //         ],
-        //         [
-        //             'startingDestination'=>'Kocaeli',
-        //             'endingDestination'=>'Ankara',
-        //             'datetime'=>'2024-01-02',
-        //             'busPlate'=>'34 XYZ 41',
-        //             'price'=> 500,
-        //             'roundTrip'=>true
-        //         ]
-        //     ],
-        // ];
+
+    public function getRouteSeats(){
+        $route_id=$this->request->getVar('route-id');
+        return $route_id;
+    }
+
+    public function selectRoute(){
+        $route_id=$this->request->getVar('route-id');
+        // Session starting
+        return redirect()->to('/process/selectGoingSeats');
+    }
+};

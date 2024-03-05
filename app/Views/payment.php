@@ -56,20 +56,18 @@
 
                             </div>
                             <div class="col-lg-5">
-
                                 <div class="card bg-primary text-white rounded-3">
                                     <div class="card-body">
                                         <div class="d-flex justify-content-between align-items-center mb-4">
                                             <h5 class="mb-0">Card details</h5>
                                         </div>
-                                        <form class="mt-4" action="payment" method="post">
+                                        <form class="mt-4" action="/process/payment" method="post">
                                             <div class="form-outline form-white mb-4">
                                                 <input type="text" id="name" name="name"
                                                     class="form-control form-control-lg" siez="17"
                                                     placeholder="Cardholder's Name" />
                                                 <label class="form-label" for="typeName">Cardholder's Name</label>
                                             </div>
-
                                             <div class="form-outline form-white mb-4">
                                                 <input type="text" id="number" name="number"
                                                     class="form-control form-control-lg" size="17"
@@ -77,7 +75,6 @@
 
                                                 <label class="form-label" for="typeText">Card Number</label>
                                             </div>
-
                                             <div class="row mb-4">
                                                 <div class="col-md-6">
                                                     <div class="form-outline form-white">
@@ -98,7 +95,6 @@
                                                 </div>
                                             </div>
                                             <hr class="my-4">
-
                                             <div class="d-flex justify-content-between">
                                                 <p class="mb-2">Subtotal</p>
                                                 <p class="fw-normal mb-0"><?= getenv('currency') . esc($subTotal) ?></p>
@@ -114,18 +110,14 @@
                                                 <p class="fw-normal mb-0"><?= getenv('currency') . esc($totalPrice) ?>
                                                 </p>
                                             </div>
-
                                             <input type="submit" class="btn btn-info btn-block btn-lg"
                                                 value="<?= getenv('currency') . esc($totalPrice) ?> Checkout">
                                             </input>
                                         </form>
                                     </div>
                                 </div>
-
                             </div>
-
                         </div>
-
                     </div>
                 </div>
             </div>

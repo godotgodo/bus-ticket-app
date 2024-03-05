@@ -2,11 +2,31 @@
 
 namespace App\Controllers;
 
-class CardController extends BaseController
+use function PHPSTORM_META\type;
+
+class ProcessController extends BaseController
 {
-    public function index(): string
-    {
+    public function getSelectGoingSeats(){
+        // Sessiondan id alınıp dbden sorgulama yapılıp bilgiler viewe iletilecek;
+        $data = [
+            'event'=>'select_going_seats',
+            'freeSeats'=>[1,2,3,4,5,10]
+        ];
+        return view('process', $data);
+    }
+
+    public function getSelectReturningSeats(){
         $data=[
+            'route_id'=>'5',
+            'datetime'=>'2023-01-01',
+            'event'=>'select_returning_seats',
+        ];
+        return view('process',$data);
+    }
+
+    public function getPayment(){
+        $data=[
+            'event'=>'payment',
             'tickets'=>[
                 [
                     'startingDestination'=>'İstanbul',
@@ -26,39 +46,46 @@ class CardController extends BaseController
                 ]
             ],
             'discountPercentage'=>15
+    //     // session ile totalPrice kaydedilmeli ve aşağıdaki payment metodunda kullanılmalı
+    //     return $this->getPayment();
         ];
         $data['subTotal'] = $this->calculateSubTotal($data);
         $data['discountAmount'] = $this->applyDiscount($data);    
         $data['totalPrice'] = $data['subTotal'] - $data['discountAmount'];
 
-        // session ile totalPrice kaydedilmeli ve aşağıdaki payment metodunda kullanılmalı
-        return view('user/card', $data);
+        return view('process',$data);
     }
 
-    public function payment() :string {
+    public function selectGoingSeats(){
+        $selectedSeatsString = $this->request->getPost('selectGoingSeats');
+        if ($selectedSeatsString!=null && is_string($selectedSeatsString)) {
+            $selectedSeats = explode('-', $selectedSeatsString);
+            //sessiona kaydedildi
+        }
+
+        return $this->getSelectReturningSeats();
+    }
+    
+    public function selectReturningSeats(){
+        $selectedSeatsString = $this->request->getPost('selectReturningSeats');
+        if ($selectedSeatsString!=null && is_string($selectedSeatsString)) {
+            $selectedSeats = explode('-', $selectedSeatsString);
+            //sessiona kaydedildi
+        }
+
+        return $this->getPayment();
+    }
+
+    public function payment() {
         $card = [
             'name' => $this->request->getPost('name'),
             'number' => $this->request->getPost('number'),
             'expiration' => $this->request->getPost('expiration'),
             'cvv' => $this->request->getPost('cvv'),
         ];
-        // $totalPrice=$_SESSION['totalPrice'];
+        // session
         $totalPrice=300;
         return "Kart numarası " . $card['number'] . " olan karttan $totalPrice kadar tutar çekilecek.";
-    }
-
-    public function addToCard(){
-        $data=[
-            'going'=>[
-                'route_id'=>$this->request->getPost('route-id'),
-                'seats'=>[1,2]
-            ],
-            'returning'=>[
-                'route_id'=>$this->request->getPost('route-id'),
-                'seats'=>[1,2]
-            ]
-        ];
-        return $data['going']['route_id'];
     }
 
     function calculateSubTotal($data){
@@ -75,4 +102,5 @@ class CardController extends BaseController
         $discountAmount = $subTotal * ($discountPercentage / 100);
         return $discountAmount;
     }
+    
 }

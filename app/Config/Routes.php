@@ -12,15 +12,20 @@ $routes->post('login', 'LoginController::auth');
 $routes->get('register', 'RegisterController::index');
 $routes->post('register', 'RegisterController::save');
 $routes->group('user', static function ($routes) {
-    $routes->get('card', 'CardController::index',['as'=>'user_card']);
-    $routes->post('payment', 'CardController::payment');
     $routes->get('tickets', 'UserController::getTickets');
     $routes->get('reservations', 'UserController::getReservations');
     $routes->post('deleteReservation/(:num)', 'UserController::deleteReservation/$1');
+    $routes->post('addToReservation','UserController::addToReservation');
+    $routes->post('releaseTheTicket/(:num)','UserController::releaseTheTicket/$1');
 });
+$routes->group('process',static function ($routes){
+    $routes->get('selectGoingSeats','ProcessController::getSelectGoingSeats');
+    $routes->post('selectGoingSeats','ProcessController::selectGoingSeats');
+    $routes->get('selectReturningSeats','ProcessController::getSelectReturningSeats');
+    $routes->post('selectReturningSeats','ProcessController::selectReturningSeats');
+    $routes->get('payment','ProcessController::getPayment');
+    $routes->post('payment','ProcessController::payment');
+});
+$routes->post('selectRoute','RouteController::selectRoute');
 $routes->get('searchTickets','TicketController::searchTickets');
-
-//Should be working with dynamic data, now static html.
 $routes->get('routes','RouteController::getRoutes');
-$routes->post('addToCard','CardController::addToCard');
-$routes->post('addToReservation','UserController::addToReservation');

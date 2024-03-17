@@ -9,6 +9,12 @@ class CreateRoutesTicketsTable extends Migration
     public function up()
     {
         $this->forge->addField([
+            'routestickets_id' => [
+                'type' => 'INT',
+                'constraint' => 5,
+                'unsigned' => true,
+                'auto_increment' => true,
+            ],
             'route_id' => [
                 'type' => 'INT',
                 'constraint' => 5,
@@ -29,6 +35,7 @@ class CreateRoutesTicketsTable extends Migration
             ],
         ]);
 
+        $this->forge->addPrimaryKey('routestickets_id');
         $this->forge->addForeignKey('route_id', 'routes', 'route_id', '', 'CASCADE');
         $this->forge->addForeignKey('ticket_id', 'tickets', 'ticket_id', '', 'CASCADE');
         $this->forge->createTable('routestickets');

@@ -16,7 +16,7 @@ class CreateRoutesTable extends Migration
                 'auto_increment' => true,
             ],
             'arrival_date' => [
-                'type' => 'DATE',
+                'type' => 'DATETIME',
                 'null' => false,
             ],
             'destination_id' => [

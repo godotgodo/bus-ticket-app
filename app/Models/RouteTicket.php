@@ -8,6 +8,7 @@ use Faker\Core\DateTime;
 class RouteTicket extends Model
 {
     protected $table = 'routestickets';
+    protected $primaryKey = 'routestickets_id';
     protected $allowedFields = ['route_id', 'ticket_id', 'created_at', 'updated_at'];
     protected $useTimestamps = true;
 }

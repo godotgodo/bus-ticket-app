@@ -63,7 +63,7 @@ class ProcessController extends BaseController
     {
         $selectedSeatsString = $this->request->getPost('selectGoingSeats');
         if ($selectedSeatsString != null && is_string($selectedSeatsString)) {
-            $selectedSeats = explode('-', $selectedSeatsString);
+            $selectedSeats = explode('|', $selectedSeatsString);
             //sessiona kaydedildi
         }
 
@@ -74,7 +74,7 @@ class ProcessController extends BaseController
     {
         $selectedSeatsString = $this->request->getPost('selectReturningSeats');
         if ($selectedSeatsString != null && is_string($selectedSeatsString)) {
-            $selectedSeats = explode('-', $selectedSeatsString);
+            $selectedSeats = explode('|', $selectedSeatsString);
             //sessiona kaydedildi
         }
 

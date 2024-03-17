@@ -23,6 +23,10 @@ class CreateUsersTable extends Migration
                 'type' => 'VARCHAR',
                 'constraint' => 255,
             ],
+            'password' => [
+                'type' => 'VARCHAR',
+                'constraint' => 255,
+            ],
             'identity_number' => [
                 'type' => 'VARCHAR',
                 'constraint' => 255,
@@ -42,6 +46,10 @@ class CreateUsersTable extends Migration
             'job' => [
                 'type' => 'VARCHAR',
                 'constraint' => 255,
+            ],
+            'is_admin' => [
+                'type' => 'TINYINT',
+                'constraint' => 1,
             ],
             'passport_number' => [
                 'type' => 'VARCHAR',

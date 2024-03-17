@@ -19,11 +19,13 @@ class CreateWalletsTable extends Migration
                 'type' => 'INT',
                 'constraint' => 5,
                 'unsigned' => true,
+                'unique' => true
             ],
             'balance' => [
                 'type' => 'DECIMAL',
                 'constraint' => '10,2',
                 'null' => false,
+                'default'=> 0
             ],
             'created_at' => [
                 'type' => 'TIMESTAMP',
@@ -38,6 +40,7 @@ class CreateWalletsTable extends Migration
         $this->forge->addPrimaryKey('wallet_id');
         $this->forge->addForeignKey('user_id', 'users', 'user_id', '', 'CASCADE');
         $this->forge->createTable('wallets');
+        $this->forge->addUniqueKey('user_id');
     }
 
     public function down()

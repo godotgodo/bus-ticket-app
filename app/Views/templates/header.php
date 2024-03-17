@@ -28,30 +28,33 @@
             </div>
             <div>
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link active" href="#">Balance: 100</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" href="/login">Log in</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" href="/register">Sign Up</a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                            aria-expanded="false">
-                            Profile
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="/user/tickets">Tickets</a></li>
-                            <li><a class="dropdown-item" href="/user/reservations">Reservations</a></li>
-                            <li><a class="dropdown-item" href="/user/settings">Settings</a></li>
-                            <li>
-                                <hr class="dropdown-divider">
-                            </li>
-                            <li><a class="dropdown-item" href="logout">Log out</a></li>
-                        </ul>
-                    </li>
+                    <?php if(session()->has('logged_in')): ?>
+                        <li class="nav-item">
+                            <a class="nav-link active" href="#">Balance: <?php echo session()->get('balance') ?></a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                               aria-expanded="false">
+                                Profile
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="/user/tickets">Tickets</a></li>
+                                <li><a class="dropdown-item" href="/user/reservations">Reservations</a></li>
+                                <li><a class="dropdown-item" href="/user/settings">Settings</a></li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li><form method="post" action="/logout"><button class="dropdown-item" type="submit">Log out</button></form></li>
+                            </ul>
+                        </li>
+                    <?php else: ?>
+                        <li class="nav-item">
+                            <a class="nav-link active" href="/login">Log in</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" href="/register">Sign Up</a>
+                        </li>
+                    <?php endif; ?>
                 </ul>
             </div>
         </nav>

@@ -9,6 +9,7 @@ use CodeIgniter\Router\RouteCollection;
 $routes->get('/', 'HomeController::index');
 $routes->get('login', 'LoginController::index');
 $routes->post('login', 'LoginController::auth');
+$routes->post('logout', 'LoginController::logout');
 $routes->get('register', 'RegisterController::index');
 $routes->post('register', 'RegisterController::save');
 $routes->group('user', static function ($routes) {

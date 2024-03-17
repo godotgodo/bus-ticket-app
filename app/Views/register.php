@@ -18,13 +18,13 @@
                                     </div>
                                     <div class="d-flex flex-row align-items-center mb-4">
                                         <div class="form-outline flex-fill mb-0">
-                                            <input type="text" id="tel_no" name="tel_no" class="form-control" />
+                                            <input type="text" id="tel_no" name="phone_number" class="form-control" />
                                             <label class="form-label" for="tel_no">Telephone</label>
                                         </div>
                                     </div>
                                     <div class="d-flex flex-row align-items-center mb-4">
                                         <div class="form-outline flex-fill mb-0">
-                                            <input type="text" id="tc_no" name="tc_no" class="form-control" />
+                                            <input type="text" id="tc_no" name="identity_number" class="form-control" />
                                             <label class="form-label" for="tc_no">Identity No</label>
                                         </div>
                                     </div>
@@ -39,11 +39,6 @@
                                             <input class="form-check-input" type="radio" name="gender" id="gender-male"
                                                 value="male" />
                                             <label class="form-check-label" for="gender-male">Male</label>
-                                        </div>
-                                        <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="radio" name="gender" id="gender-other"
-                                                value="other" />
-                                            <label class="form-check-label" for="gender-other">Other</label>
                                         </div>
                                     </div>
                                     <div class="d-flex flex-row align-items-center mb-4">
@@ -60,9 +55,9 @@
                                     </div>
                                     <div class="d-flex flex-row align-items-center mb-4">
                                         <div class="form-outline flex-fill mb-0">
-                                            <input type="text" id="passport_no" name="passport_no"
+                                            <input type="text" id="passport_number" name="passport_number"
                                                 class="form-control" />
-                                            <label class="form-label" for="passport_no">Passport No</label>
+                                            <label class="form-label" for="passport_number">Passport No</label>
                                         </div>
                                     </div>
                                     <div class="d-flex flex-row align-items-center mb-4">
@@ -71,10 +66,19 @@
                                             <label class="form-label" for="email">Your Email</label>
                                         </div>
                                     </div>
-                                    <div class="d-flex flex-row align-items-center mb-4">
-                                        <div class="form-outline flex-fill mb-0">
+                                    <div class="d-flex flex-column align-items-center mb-4">
+                                        <div class="form-outline flex-fill mb-0 w-100">
                                             <input type="password" id="password" name="password" class="form-control" />
                                             <label class="form-label" for="password">Password</label>
+                                        </div>
+                                        <?php if(session()->getFlashdata('error')): ?>
+                                            <div class="text-danger"><?= session()->getFlashdata('error') ?></div>
+                                        <?php endif; ?>
+                                    </div>
+                                    <div class="d-flex flex-row align-items-center mb-4">
+                                        <div class="form-outline flex-fill mb-0">
+                                            <input type="password" id="password_confirmation" name="password_confirmation" class="form-control" />
+                                            <label class="form-label" for="password_confirmation">Password Confirmation</label>
                                         </div>
                                     </div>
                                     <div class="form-check d-flex justify-content-center mb-5">
@@ -88,6 +92,18 @@
                                         <input type="submit" class="btn btn-primary btn-lg" value="Submit" />
                                     </div>
                                 </form>
+                                <?php if (session()->getFlashdata('errors')) : ?>
+                                    <div class="alert alert-danger" role="alert">
+                                        <ul>
+                                            <?php foreach (session()->getFlashdata('errors') as $error) : ?>
+                                                <li><?= esc($error) ?></li>
+                                            <?php endforeach ?>
+                                        </ul>
+                                    </div>
+                                <?php endif ?>
+                                <?php if(session()->getFlashdata('createError')): ?>
+                                    <div class="text-danger"><?= session()->getFlashdata('createError') ?></div>
+                                <?php endif; ?>
 
                             </div>
                             <div class="col-md-10 col-lg-6 col-xl-7 d-flex align-items-center order-1 order-lg-2">

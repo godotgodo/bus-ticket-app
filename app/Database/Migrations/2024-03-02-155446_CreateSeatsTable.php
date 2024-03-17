@@ -15,6 +15,23 @@ class CreateSeatsTable extends Migration
                 'unsigned' => true,
                 'auto_increment' => true,
             ],
+            'ticket_id' => [
+                'type'           => 'INT',
+                'constraint'     => 11,
+                'unsigned'       => TRUE,
+                'null'           => TRUE
+            ],
+            'reservation_id' => [
+                'type'           => 'INT',
+                'constraint'     => 11,
+                'unsigned'       => TRUE,
+                'null'           => TRUE
+            ],
+            'route_id' => [
+                'type'           => 'INT',
+                'constraint'     => 11,
+                'unsigned'       => TRUE
+            ],
             'seat_no' => [
                 'type' => 'INT',
                 'constraint' => 5,
@@ -42,6 +59,9 @@ class CreateSeatsTable extends Migration
 
         $this->forge->addPrimaryKey('seat_id');
         $this->forge->createTable('seats');
+        $this->forge->addForeignKey('ticket_id', 'tickets', 'ticket_id', "", "SET NULL");
+        $this->forge->addForeignKey('reservation_id', 'reservations', 'reservation_id', "", "SET NULL");
+        $this->forge->addForeignKey('route_id', 'routes', 'route_id', "", "CASCADE");
     }
 
     public function down()

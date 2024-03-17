@@ -29,6 +29,15 @@
                         </div>
                         <a href="#!" class="text-body">Forgot password?</a>
                     </div>
+                    <?php if (session()->getFlashdata('errors')) : ?>
+                        <div class="alert alert-danger mt-4" role="alert">
+                            <ul>
+                                <?php foreach (session()->getFlashdata('errors') as $error) : ?>
+                                    <li><?= esc($error) ?></li>
+                                <?php endforeach ?>
+                            </ul>
+                        </div>
+                    <?php endif ?>
                     <div class="text-center text-lg-start mt-4 pt-2">
                         <input type="submit" class="btn btn-primary btn-lg"
                             style="padding-left: 2.5rem; padding-right: 2.5rem;" value="Log in">

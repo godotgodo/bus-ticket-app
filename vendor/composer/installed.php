@@ -3,7 +3,7 @@
         'name' => 'codeigniter4/appstarter',
         'pretty_version' => 'dev-main',
         'version' => 'dev-main',
-        'reference' => '754c4898470a434fbfb7c28e911777b05bdebcbf',
+        'reference' => 'e807f0923b91902b811b6102ab73130121df3479',
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -13,7 +13,7 @@
         'codeigniter4/appstarter' => array(
             'pretty_version' => 'dev-main',
             'version' => 'dev-main',
-            'reference' => '754c4898470a434fbfb7c28e911777b05bdebcbf',
+            'reference' => 'e807f0923b91902b811b6102ab73130121df3479',
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
@@ -99,6 +99,15 @@
             'install_path' => __DIR__ . '/../phar-io/version',
             'aliases' => array(),
             'dev_requirement' => true,
+        ),
+        'phpmailer/phpmailer' => array(
+            'pretty_version' => 'v6.9.1',
+            'version' => '6.9.1.0',
+            'reference' => '039de174cd9c17a8389754d3b877a2ed22743e18',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../phpmailer/phpmailer',
+            'aliases' => array(),
+            'dev_requirement' => false,
         ),
         'phpunit/php-code-coverage' => array(
             'pretty_version' => '9.2.30',
@@ -333,21 +342,6 @@
             'install_path' => __DIR__ . '/../theseer/tokenizer',
             'aliases' => array(),
             'dev_requirement' => true,
-        ),
-        'twbs/bootstrap' => array(
-            'pretty_version' => 'v5.3.3',
-            'version' => '5.3.3.0',
-            'reference' => '6e1f75f420f68e1d52733b8e407fc7c3766c9dba',
-            'type' => 'library',
-            'install_path' => __DIR__ . '/../twbs/bootstrap',
-            'aliases' => array(),
-            'dev_requirement' => false,
-        ),
-        'twitter/bootstrap' => array(
-            'dev_requirement' => false,
-            'replaced' => array(
-                0 => 'v5.3.3',
-            ),
         ),
     ),
 );

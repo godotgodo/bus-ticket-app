@@ -2,6 +2,11 @@
 
 namespace App\Controllers;
 
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+
+use App\Models\Ticket;
+
 use function PHPSTORM_META\type;
 
 class ProcessController extends BaseController
@@ -89,15 +94,47 @@ class ProcessController extends BaseController
             'expiration' => $this->request->getPost('expiration'),
             'cvv' => $this->request->getPost('cvv'),
         ];
+
         // session
         if ($this->validateCreditCard($card['number']) && $this->validateExpiration($card['expiration']) && $this->validateCVV($card['cvv'])) {
             $totalPrice = 300;
-            return "Kart numarası " . $card['number'] . " olan karttan $totalPrice kadar tutar çekilecek.";
+            // PNR oluşturma işlemi
+            $ticketModel = new Ticket();
+            $ticket_id = 1; // Örnek olarak bir bilet ID'si
+            $pnrCode = $ticketModel->generatePnr($ticket_id);
+
+            // E-posta gönderme işlemi
+            $mail = new PHPMailer(true); // Exceptionları yakalamak için true kullanın
+
+            try {
+                // SMTP ayarları
+                $mail->isSMTP();
+                $mail->Host = 'smtp.gmail.com';
+                $mail->SMTPAuth = true;
+                $mail->Username = 'yyazlab@gmail.com';
+                $mail->Password = 'owtx ypxr tevp xokl';
+                $mail->SMTPSecure = 'tls';
+                $mail->Port = 587;
+
+                // Alıcı ve gönderici bilgileri
+                $mail->setFrom('yyazlab@gmail.com', 'Yazlab');
+                $mail->addAddress('serhat.akcadag@gmail.com', 'Serhat Akçadağ');
+
+                // E-posta içeriği
+                $mail->isHTML(true); // HTML içerik kullanılacaksa true
+                $mail->Subject = 'PNR Numarası';
+                $mail->Body    = 'Ödemeniz başarıyla gerçekleştirildi. PNR Numaranız: ' . $pnrCode;
+
+                $mail->send();
+
+                return view('success', ['pnrCode' => $pnrCode]);
+            } catch (Exception $e) {
+                return "E-posta gönderilemedi. Hata: {$mail->ErrorInfo}";
+            }
         } else {
             return "Geçersiz kredi kartı bilgileri.";
         }
     }
-
     function calculateSubTotal($data)
     {
         $subTotal = 0;

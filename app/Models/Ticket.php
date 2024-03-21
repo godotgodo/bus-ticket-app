@@ -15,18 +15,18 @@ class Ticket extends Model
 
     public function getUser($ticket_id)
     {
-       $user_id = $this->find($ticket_id)['user_id'];
-       $userModel = new User();
-       return $userModel->find($ticket_id);
+        $user_id = $this->find($ticket_id)['user_id'];
+        $userModel = new User();
+        return $userModel->find($ticket_id);
     }
-    public function getSeats($ticket_id) : array
+    public function getSeats($ticket_id): array
     {
         $seatModel = new Seat();
         return $seatModel->where('ticket_id', $ticket_id)->findAll();
     }
     public function generatePnr($ticket_id)
     {
-        $plates = ['antalya'=>'07', 'izmir'=>'35', 'ankara'=>'06','istanbul'=>'34'];
+        $plates = ['antalya' => '07', 'izmir' => '35', 'ankara' => '06', 'istanbul' => '34'];
         $ticketRoutes = new RouteTicket();
         $route_id = $ticketRoutes->where('ticket_id', $ticket_id)->first()['route_id'];
         $routeModel = new Route();

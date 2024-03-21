@@ -30,16 +30,29 @@ class Route extends Model
     }
     public function searchTickets($starting_destination, $ending_destination, $going_date, $returning_date = null)
     {
-        $query = $this->select('*')
+        $going_query = $this->select('*')
             ->join('destinations', 'routes.destination_id = destinations.destination_id')
             ->where('destinations.starting_destination', $starting_destination)
             ->where('destinations.ending_destination', $ending_destination)
-            ->where('routes.arrival_date >=', $going_date);
+            ->where('DATE(routes.arrival_date)', $going_date)
+            ->findAll();
 
+        $returning_query = null;
         if ($returning_date) {
-            $query->where('routes.arrival_date <=', $returning_date);
+            $returning_query = $this->select('*')
+                ->join('destinations', 'routes.destination_id = destinations.destination_id')
+                ->where('destinations.starting_destination', $ending_destination)
+                ->where('destinations.ending_destination', $starting_destination)
+                ->where('DATE(routes.arrival_date)', $returning_date)
+                ->findAll();
         }
 
-        return $query->findAll();
+        $results = array_merge($going_query, $returning_query ?? []);
+
+        foreach ($results as &$result) {
+            $result['arrival_date'] = date('d.m.Y', strtotime($result['arrival_date']));
+        }
+
+        return $results;
     }
 }

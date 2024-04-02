@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use CodeIgniter\Model;
+use DateTime;
 
 class Route extends Model
 {
@@ -37,7 +38,7 @@ class Route extends Model
             ->where('DATE(routes.arrival_date)', $going_date)
             ->findAll();
 
-        $returning_query = null;
+        $returning_query = [];
         if ($returning_date) {
             $returning_query = $this->select('*')
                 ->join('destinations', 'routes.destination_id = destinations.destination_id')
@@ -47,12 +48,20 @@ class Route extends Model
                 ->findAll();
         }
 
-        $results = array_merge($going_query, $returning_query ?? []);
+       // $results = array_merge($going_query, $returning_query ?? []);
 
-        foreach ($results as &$result) {
-            $result['arrival_date'] = date('d.m.Y', strtotime($result['arrival_date']));
+        foreach ($going_query as &$going) {
+            $dateTime = DateTime::createFromFormat("Y-m-d H:i:s", $going['arrival_date']);
+            $going['time'] = $dateTime->format("H") . ":" . $dateTime->format("i");
+            $going['arrival_date'] = date('d.m.Y', strtotime($going['arrival_date']));
         }
-
-        return $results;
+        foreach ($returning_query as &$returning) {
+            $dateTime = DateTime::createFromFormat("Y-m-d H:i:s", $returning['arrival_date']);
+            $returning['time'] = $dateTime->format("H") . ":" . $dateTime->format("i");
+            $returning['arrival_date'] = date('d.m.Y', strtotime($returning['arrival_date']));
+        }
+        session()->set('going_query', $going_query);
+        session()->set('returning_query', $returning_query);
+        return ['going_query'=>$going_query, 'returning_query'=>$returning_query];
     }
 }

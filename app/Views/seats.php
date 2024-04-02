@@ -16,12 +16,16 @@
             line-height: 40px;
             cursor: pointer;
         }
-        .seat.selected {
+        .seat.selected.male {
             background-color: #007bff;
             color: #fff;
         }
+        .seat.selected.female {
+            background-color: #ff63ad;
+            color: #fff;
+        }
         .seat.selected-after {
-            background-color: #007bff;
+            background-color: #00ff0d;
             color: #fff;
         }
     </style>
@@ -31,7 +35,7 @@
     <h2 class="mb-4">Otobüs Koltuk Seçimi</h2>
     <form action="seats" method="post">
         <?php
-            if (session()->has('return'))
+            if (session()->has('returnMessage'))
             {
                 echo "<h5 class='mt-2'>Dönüş İçin Koltuk Seçiniz.</h5>";
             }
@@ -39,35 +43,33 @@
     <div class="row">
         <?php
 
-        $seatCount = 40;
-        $user = ['gender' => 0];
+        if (!empty($seats))
+        {
+            for ($i = 1; $i <= count($seats); $i++) {
 
-        $selectedSeats = [3, 7, 10, 25];
+                $selectedClass = in_array($i, $selectedSeats) ? 'selected' : '';
+                $gender = $seats[$i-1]['gender'] == 0 ? 'male' : 'female';
+                if ($i % 4 == 0) {
+                    echo "<div><div class='seat $selectedClass $gender' data-seat='$i'>$i</div></div>";
 
-        for ($i = 1; $i <= $seatCount; $i++) {
-
-            $selectedClass = in_array($i, $selectedSeats) ? 'selected' : '';
-            if ($i % 4 == 0) {
-
-                $selected = $user['gender'] == 0 ? 'selected' : '';
-                echo "<div><div class='seat $selectedClass' data-seat='$i'>$i</div></div>";
-
-                echo "<div class='w-100'></div>";
+                    echo "<div class='w-100'></div>";
+                }
+                else if($i % 2 == 0)
+                {
+                    echo "<div class='mr-5'><div class='seat $selectedClass $gender' data-seat='$i'>$i</div></div>";
+                }
+                else{
+                    echo "<div><div class='seat $selectedClass $gender' data-seat='$i'>$i</div></div>";
+                }
             }
-            else if($i % 2 == 0)
-            {
-                echo "<div class='mr-5'><div class='seat $selectedClass' data-seat='$i'>$i</div></div>";
-            }
-            else{
-                echo "<div><div class='seat $selectedClass' data-seat='$i'>$i</div></div>";
-            }
+            $return_id = 1;
         }
-        $return_id = 1;
+
         ?>
     </div>
     <div class="mt-4">
         <input type="hidden" name="seatNumbers" id="hiddenInput" value="">
-        <input type="hidden" name="roundTripId" id="roundTrip" value="<?php echo $return_id?>">
+        <input type="text" hidden name="trip_type" value="<?= $trip_type ?>">
         <button id="btnBuy" type="submit" class="btn btn-primary">Satın Al</button>
         <button id="btnReserve" type="submit" class="btn btn-primary">Reverzasyon Yap</button>
     </div>

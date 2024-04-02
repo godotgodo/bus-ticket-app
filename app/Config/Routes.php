@@ -31,5 +31,8 @@ $routes->post('selectRoute','RouteController::selectRoute');
 $routes->get('searchTickets','TicketController::searchTickets');
 $routes->get('routes','RouteController::getRoutes');
 
-$routes->get('seatselect', 'HomeController::seats');
+$routes->post('seatselect', 'HomeController::seats');
 $routes->post('seats', 'HomeController::seatSelect');
+
+$routes->get('seats','HomeController::ticketInfo');
+$routes->post('checkTicketInfo', 'HomeController::checkTicketInfo');

@@ -16,12 +16,38 @@ class TicketController extends BaseController
         $routeModel = new Route();
         $tickets = $routeModel->searchTickets($starting_destination, $ending_destination, $going_date, $returning_date);
 
+        $onGoingTickets = $tickets['going_query'];
+        $returningTickets = $tickets['returning_query'];
+
+        if($returning_date != "")
+        {
+            session()->set('isRoundTrip', true);
+            session()->set('returning_date', $returning_date);
+            session()->set('going_date', $going_date);
+            session()->set('starting_destination', $starting_destination);
+            session()->set('ending_destination', $ending_destination);
+        }
+        else{
+            if(session()->has('isRoundTrip')){
+                session()->remove('isRoundTrip');
+            }
+        }
+
+        if(session()->has('on_going_route'))
+        {
+            $onGoingTickets = [];
+        }
+        else{
+            $returningTickets = [];
+        }
+
         return view('ticket_search_results', [
             'starting_destination' => $starting_destination,
             'ending_destination' => $ending_destination,
             'going_date' => $going_date,
             'returning_date' => $returning_date,
-            'tickets' => $tickets,
+            'onGoingTickets' => $onGoingTickets,
+            'returningTickets' => $returningTickets
         ]);
     }
 }

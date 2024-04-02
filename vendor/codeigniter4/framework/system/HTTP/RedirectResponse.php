@@ -76,8 +76,9 @@ class RedirectResponse extends Response
     public function back(?int $code = null, string $method = 'auto')
     {
         Services::session();
-
-        return $this->redirect(previous_url(), $method, $code);
+        $previousURL = previous_url();
+        $cleanedURL = str_replace('/index.php', '', $previousURL);
+        return $this->redirect($cleanedURL, $method, $code);
     }
 
     /**
